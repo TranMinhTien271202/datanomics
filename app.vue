@@ -3,7 +3,6 @@ const visible = ref(false);
 const collapseProduct = ref(false);
 const domain = "https://qrx.com.vn/";
 const route = useRoute();
-const { apiQrxData, userid, token, getApi, saveParamsToSessionStorage, getParamsFromSessionStorage } = useApiQrx();
 
 useHead({
   link: [{ rel: "canonical", href: domain + route.path }],
@@ -46,100 +45,31 @@ onMounted(() => {
 onBeforeUnmount(() => {
   window.removeEventListener("scroll", handleScroll);
 });
-
-onMounted(() => {
-  // Get the "token" query parameter from the URL
-  const urlSearchParams = new URLSearchParams(window.location.search);
-  token.value = urlSearchParams.get("token");
-  userid.value = urlSearchParams.get("userID");
-  saveParamsToSessionStorage(token.value, userid.value);
-  const getParams = getParamsFromSessionStorage();
-  getApi(getParams.token, getParams.userid);
-});
 </script>
 
 <template>
-  <div class="min-h-[100vh]" :class="{ 'home-page': isHomePage, scroll: isScrolled }">
-    <header class="shadow-lg bg-[#fff] shadow-[#c6c6c6]" v-if="apiQrxData.company == null">
+  <div class="home-page min-h-[100vh]" :class="{ scroll: isScrolled }">
+    <header class="shadow-lg bg-[#fff] shadow-[#c6c6c6]">
       <div>
         <nuxt-link to="/">
-          <nuxt-picture loading="lazy" src="/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122" />
+          <nuxt-picture
+            loading="lazy"
+            :src="isScrolled ? '/images/logo-1.png' : '/images/logo.png'"
+            :img-attrs="{ alt: 'logo' }"
+            width="136"
+          />
         </nuxt-link>
       </div>
 
       <div class="nav-menu flex gap-x-[40px] subtitle-3 max-xl:hidden">
-        <nuxt-link to="/tao-ma-qr" class="hover:text-[#ed7f22]">Tạo mã QR</nuxt-link>
-        <div class="relative hover:text-[#ed7f22]">
-          Sản phẩm
-
-          <div class="sub-menu hidden absolute top-[100%] left-0 pt-5 shadow-sm shadow-[#dfdfdf]">
-            <nuxt-link to="/giai-phap" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Tất cả sản phẩm</nuxt-link
-            >
-            <nuxt-link to="/qrcode-marketing" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Marketing</nuxt-link
-            >
-            <nuxt-link to="/qrcode-chong-gia" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Chống giả</nuxt-link
-            >
-            <nuxt-link to="/qrcode-bao-hanh" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Bảo hành</nuxt-link
-            >
-            <nuxt-link to="/qrcode-loyalty" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Loyalty</nuxt-link
-            >
-            <nuxt-link to="/zalo-mini-app" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >Zalo mini app</nuxt-link
-            >
-          </div>
-        </div>
-        <nuxt-link to="https://qrx.com.vn/blog" :external="true" class="hover:text-[#ed7f22]">Blog</nuxt-link>
-        <nuxt-link to="/ve-qrx" class="hover:text-[#ed7f22]">Giới thiệu</nuxt-link>
-        <nuxt-link to="/ho-tro" class="hover:text-[#ed7f22]">Hỗ trợ</nuxt-link>
-        <!-- <nuxt-link to="/bang-gia" class="hover:text-[#ed7f22]">Bảng giá</nuxt-link> -->
-      </div>
-      <div
-        class="flex gap-x-4 max-xl:hidden"
-        :class="($route.path.includes('/login') ? 'invisible' : '', { hidden: userid })"
-      >
-        <nuxt-link :to="`${crmBaseUrl}/authentication/loginRedirect`" aria-label="qrcode solution register">
-          <button
-            class="small bg-white border border-solid border-[#D9D9D9] shadow-[0px_2px_0px_0px_#0000000B]"
-            aria-label="try-it"
-          >
-            Đăng nhập
-          </button>
-        </nuxt-link>
-        <nuxt-link to="/register" aria-label="qrcode solution login">
-          <button class="primary small shadow-[0px_2px_0px_0px_#0000000B]" aria-label="login">Dùng thử miễn phí</button>
-        </nuxt-link>
-      </div>
-
-      <div class="nav-menu max-xl:hidden" :class="{ hidden: !userid }">
-        <div class="relative hover:text-[#ed7f22]">
-          <div>
-            <nuxt-picture
-              loading="lazy"
-              src="/images/icons/user-line.svg"
-              :img-attrs="{ alt: 'user-icon', width: 45, height: 45 }"
-            />
-          </div>
-
-          <div class="sub-menu hidden absolute top-[100%] right-0 pt-5 shadow-sm shadow-[#dfdfdf]">
-            <nuxt-link :to="`${crmBaseUrl}/clients/company`" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >Profile</nuxt-link
-            >
-            <nuxt-link
-              :to="`${crmBaseUrl}/authentication/logoutRedirect`"
-              class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >Đăng xuất</nuxt-link
-            >
-          </div>
-        </div>
+        <nuxt-link to="#" class="nav-item">Our Service</nuxt-link>
+        <nuxt-link to="#" class="nav-item">Offerings</nuxt-link>
+        <nuxt-link to="#" class="nav-item">About us</nuxt-link>
+        <nuxt-link to="#" class="nav-item">Contact Us</nuxt-link>
       </div>
 
       <button class="small !px-2 bg-[#F0F0F0] border-none xl:hidden" @click="visible = true" aria-label="icon-3-dot">
-        <svg viewBox="0 -53 384 384" width="20px" height="20px" class="fill-[#ed7f22]">
+        <svg viewBox="0 -53 384 384" width="20px" height="20px" class="fill-[#0066E6]">
           <path
             d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"
           />
@@ -155,6 +85,7 @@ onMounted(() => {
       <a-drawer
         v-model:visible="visible"
         :bodyStyle="{ paddingTop: '45px' }"
+        :headerStyle="{ background: '#23262F' }"
         :contentWrapperStyle="{ width: '100vw' }"
         body
         :closable="false"
@@ -163,11 +94,11 @@ onMounted(() => {
         <template #title>
           <div class="flex items-center justify-between">
             <nuxt-link to="/"
-              ><nuxt-picture loading="lazy" src="/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122"
+              ><nuxt-picture loading="lazy" src="/images/logo-1.png" :img-attrs="{ alt: 'logo' }" width="136"
             /></nuxt-link>
 
             <button class="small !px-2 bg-[#F0F0F0] border-none" @click="visible = false" aria-label="collapse-icon">
-              <svg viewBox="0 0 329.26933 329" width="20px" height="20px" class="fill-[#ed7f22]">
+              <svg viewBox="0 0 329.26933 329" width="20px" height="20px" class="fill-[#0066E6]">
                 <path
                   d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
                 />
@@ -176,283 +107,29 @@ onMounted(() => {
           </div>
         </template>
 
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link to="/tao-ma-qr" @click="visible = false">Tạo mã QR</nuxt-link>
-        </div>
-
-        <div
-          class="py-3 px-2 border-solid border-b border-[#E0E0E0] flex items-center justify-between"
-          @click="collapseProduct = !collapseProduct"
-        >
-          <span>Sản phẩm</span>
-
-          <svg
-            viewBox="0 0 24 24"
-            width="20px"
-            height="20px"
-            class="fill-[#ed7f22] transition-all"
-            :class="{ 'rotate-180 ': !collapseProduct }"
-          >
-            <g id="_16" data-name="16">
-              <path
-                d="m12 16a1 1 0 0 1 -.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1 -.7.29z"
-              />
-            </g>
-          </svg>
-        </div>
-
-        <div
-          class="sub-menu flex flex-col gap-y-4 px-2 py-4 overflow-hidden transition-all"
-          :class="{ 'h-0 !py-0': collapseProduct }"
-        >
-          <nuxt-link to="/giai-phap" class="sub-menu-item subtitle-3 text-primary" @click="visible = false">
-            QRX Tất cả sản phẩm
-          </nuxt-link>
-          <nuxt-link to="/qrcode-marketing" class="sub-menu-item subtitle-3 text-primary" @click="visible = false">
-            QRX Quản lý Marketing
-          </nuxt-link>
-          <nuxt-link to="/qrcode-chong-gia" class="sub-menu-item subtitle-3 text-primary" @click="visible = false">
-            QRX Quản lý Chống giả
-          </nuxt-link>
-          <nuxt-link to="/qrcode-bao-hanh" class="sub-menu-item subtitle-3 text-primary" @click="visible = false"
-            >QRX Quản lý Bảo hành</nuxt-link
-          >
-          <nuxt-link to="/qrcode-loyalty" class="sub-menu-item subtitle-3 text-primary" @click="visible = false"
-            >QRX Quản lý Loyalty</nuxt-link
-          >
-          <nuxt-link to="/zalo-mini-app" class="sub-menu-item subtitle-3 text-primary" @click="visible = false"
-            >Zalo mini app</nuxt-link
-          >
+        <div class="py-3 px-2 text-base-color rounded-[12px] hover:text-[#0066E6]">
+          <nuxt-link to="#" @click="visible = false">Our Service</nuxt-link>
         </div>
         <div class="py-3 px-2">
-          <nuxt-link to="https://qrx.com.vn/blog" :external="true" class="hover:text-[#ed7f22]">Blog</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link to="/ve-qrx" @click="visible = false">Giới thiệu</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link to="/ho-tro" @click="visible = false">Hỗ trợ</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <!-- <nuxt-link to="/bang-gia" @click="visible = false">Bảng giá</nuxt-link> -->
-        </div>
-
-        <div class="flex-center max-sm:flex-col gap-4 mt-4">
-          <nuxt-link
-            :to="`${crmBaseUrl}/authentication/loginRedirect`"
-            class="flex-1 w-full"
-            aria-label="qrcode solution try"
+          <nuxt-link to="#" :external="true" class="text-base-color rounded-[12px] hover:!text-[#0066E6]"
+            >Offerings</nuxt-link
           >
-            <button class="large w-full" aria-label="register" @click="visible = false">Đăng nhập</button>
-          </nuxt-link>
-
-          <nuxt-link to="/register" class="flex-1 w-full" aria-label="qrcode solution login">
-            <button class="primary large w-full" aria-label="login" @click="visible = false">Dùng thử miễn phí</button>
-          </nuxt-link>
         </div>
+        <div class="py-3 px-2 text-base-color rounded-[12px] hover:text-[#0066E6]">
+          <nuxt-link to="#" @click="visible = false">About us</nuxt-link>
+        </div>
+        <div class="py-3 px-2 text-base-color rounded-[12px] hover:text-[#0066E6]">
+          <nuxt-link to="#" @click="visible = false">Contact Us</nuxt-link>
+        </div>
+        <div class="py-3 px-2 text-base-color rounded-[12px] hover:text-[#0066E6]"></div>
       </a-drawer>
     </header>
 
-    <header class="shadow-lg bg-[#fff] shadow-[#c6c6c6]" v-if="apiQrxData.company != null">
-      <div>
-        <nuxt-link to="/">
-          <nuxt-picture loading="lazy" src="/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122" />
-        </nuxt-link>
-      </div>
-
-      <div class="nav-menu flex gap-x-[40px] subtitle-3 max-xl:hidden">
-        <div class="relative hover:text-[#ed7f22]">
-          Sản phẩm
-
-          <div class="sub-menu hidden absolute top-[100%] left-0 pt-5 shadow-sm shadow-[#dfdfdf]">
-            <nuxt-link to="/product" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Tất cả sản phẩm</nuxt-link
-            >
-            <nuxt-link to="/qrcode-marketing" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Marketing</nuxt-link
-            >
-            <nuxt-link to="/qrcode-chong-gia" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Chống giả</nuxt-link
-            >
-            <nuxt-link to="/qrcode-bao-hanh" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Bảo hành</nuxt-link
-            >
-            <nuxt-link to="/qrcode-loyalty" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >QRX Quản lý Loyalty</nuxt-link
-            >
-            <nuxt-link to="/zalo-mini-app" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >Zalo mini app</nuxt-link
-            >
-          </div>
-        </div>
-        <nuxt-link :to="`${crmBaseUrl}/clients/projects`" class="hover:text-[#ed7f22]">Dự án</nuxt-link>
-        <nuxt-link :to="`${crmBaseUrl}/clients/invoices`" class="hover:text-[#ed7f22]">Hóa đơn</nuxt-link>
-        <nuxt-link :to="`${crmBaseUrl}/clients/contracts`" class="hover:text-[#ed7f22]">Hợp đồng</nuxt-link>
-        <nuxt-link :to="`${crmBaseUrl}/clients/estimates`" class="hover:text-[#ed7f22]">Báo giá</nuxt-link>
-        <nuxt-link :to="`${crmBaseUrl}/clients/proposals`" class="hover:text-[#ed7f22]">Đề xuất</nuxt-link>
-        <nuxt-link :to="`${crmBaseUrl}/clients/tickets`" class="hover:text-[#ed7f22]">Hỗ trợ khách hàng</nuxt-link>
-        <!-- <nuxt-link to="/bang-gia" class="hover:text-[#ed7f22]">Bảng giá</nuxt-link> -->
-      </div>
-
-      <div class="nav-menu max-xl:hidden">
-        <div class="relative hover:text-[#ed7f22]">
-          <div>
-            <nuxt-picture
-              loading="lazy"
-              src="/images/icons/user-line.svg"
-              :img-attrs="{ alt: 'user-icon', width: 45, height: 45 }"
-            />
-          </div>
-
-          <div class="sub-menu hidden absolute top-[100%] right-0 pt-5 shadow-sm shadow-[#dfdfdf]">
-            <nuxt-link :to="`${crmBaseUrl}/clients/company`" class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >Profile</nuxt-link
-            >
-            <nuxt-link
-              :to="`${crmBaseUrl}/authentication/logoutRedirect`"
-              class="subtitle-3 sub-menu-item hover:text-[#ed7f22]"
-              >Đăng xuất</nuxt-link
-            >
-          </div>
-        </div>
-      </div>
-
-      <button class="small !px-2 bg-[#F0F0F0] border-none xl:hidden" @click="visible = true" aria-label="icon-3-dot">
-        <svg viewBox="0 -53 384 384" width="20px" height="20px" class="fill-[#ed7f22]">
-          <path
-            d="m368 154.667969h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"
-          />
-          <path
-            d="m368 32h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"
-          />
-          <path
-            d="m368 277.332031h-352c-8.832031 0-16-7.167969-16-16s7.167969-16 16-16h352c8.832031 0 16 7.167969 16 16s-7.167969 16-16 16zm0 0"
-          />
-        </svg>
-      </button>
-
-      <a-drawer
-        v-model:visible="visible"
-        :bodyStyle="{ paddingTop: '45px' }"
-        :contentWrapperStyle="{ width: '100vw' }"
-        body
-        :closable="false"
-        placement="right"
-      >
-        <template #title>
-          <div class="flex items-center justify-between">
-            <nuxt-link to="/"
-              ><nuxt-picture loading="lazy" src="/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122"
-            /></nuxt-link>
-
-            <button class="small !px-2 bg-[#F0F0F0] border-none" @click="visible = false" aria-label="collapse-icon">
-              <svg viewBox="0 0 329.26933 329" width="20px" height="20px" class="fill-[#ed7f22]">
-                <path
-                  d="m194.800781 164.769531 128.210938-128.214843c8.34375-8.339844 8.34375-21.824219 0-30.164063-8.339844-8.339844-21.824219-8.339844-30.164063 0l-128.214844 128.214844-128.210937-128.214844c-8.34375-8.339844-21.824219-8.339844-30.164063 0-8.34375 8.339844-8.34375 21.824219 0 30.164063l128.210938 128.214843-128.210938 128.214844c-8.34375 8.339844-8.34375 21.824219 0 30.164063 4.15625 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921875-2.089844 15.082031-6.25l128.210937-128.214844 128.214844 128.214844c4.160156 4.160156 9.621094 6.25 15.082032 6.25 5.460937 0 10.921874-2.089844 15.082031-6.25 8.34375-8.339844 8.34375-21.824219 0-30.164063zm0 0"
-                />
-              </svg>
-            </button>
-          </div>
-        </template>
-
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link to="/tao-ma-qr" @click="visible = false">Tạo mã QR</nuxt-link>
-        </div>
-
-        <div
-          class="py-3 px-2 border-solid border-b border-[#E0E0E0] flex items-center justify-between"
-          @click="collapseProduct = !collapseProduct"
-        >
-          <span>Sản phẩm</span>
-
-          <svg
-            viewBox="0 0 24 24"
-            width="20px"
-            height="20px"
-            class="fill-[#ed7f22] transition-all"
-            :class="{ 'rotate-180 ': !collapseProduct }"
-          >
-            <g id="_16" data-name="16">
-              <path
-                d="m12 16a1 1 0 0 1 -.71-.29l-6-6a1 1 0 0 1 1.42-1.42l5.29 5.3 5.29-5.29a1 1 0 0 1 1.41 1.41l-6 6a1 1 0 0 1 -.7.29z"
-              />
-            </g>
-          </svg>
-        </div>
-
-        <div
-          class="sub-menu flex flex-col gap-y-4 px-2 py-4 overflow-hidden transition-all"
-          :class="{ 'h-0 !py-0': collapseProduct }"
-        >
-          <nuxt-link to="/product" class="sub-menu-item subtitle-3 text-primary" @click="visible = false">
-            QRX Tất cả sản phẩm
-          </nuxt-link>
-          <nuxt-link to="/qrcode-marketing" class="sub-menu-item subtitle-3 text-primary" @click="visible = false">
-            QRX Quản lý Marketing
-          </nuxt-link>
-          <nuxt-link to="qrcode-chong-gia" class="sub-menu-item subtitle-3 text-primary" @click="visible = false">
-            QRX Quản lý Chống giả
-          </nuxt-link>
-          <nuxt-link to="qrcode-bao-hanh" class="sub-menu-item subtitle-3 text-primary" @click="visible = false"
-            >QRX Quản lý Bảo hành</nuxt-link
-          >
-          <nuxt-link to="qrcode-loyalty" class="sub-menu-item subtitle-3 text-primary" @click="visible = false"
-            >QRX Quản lý Loyalty</nuxt-link
-          >
-          <nuxt-link to="/zalo-mini-app" class="sub-menu-item subtitle-3 text-primary" @click="visible = false"
-            >Zalo mini app</nuxt-link
-          >
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link :to="`${crmBaseUrl}/clients/projects`" @click="visible = false">Dự án</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link :to="`${crmBaseUrl}/clients/invoices`" @click="visible = false">Hóa đơn</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link :to="`${crmBaseUrl}/clients/contracts`" @click="visible = false">Hợp đồng</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link :to="`${crmBaseUrl}/clients/estimates`" @click="visible = false">Báo giá</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link :to="`${crmBaseUrl}/clients/proposals`" @click="visible = false">Đề xuất</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <nuxt-link :to="`${crmBaseUrl}/clients/tickets`" @click="visible = false">Hỗ trợ khách hàng</nuxt-link>
-        </div>
-        <div class="py-3 px-2 hover:text-[#ed7f22]">
-          <!-- <nuxt-link to="/bang-gia" @click="visible = false">Bảng giá</nuxt-link> -->
-        </div>
-
-        <div class="py-3 px-2">
-          <p>Hello {{ apiQrxData.company }}</p>
-        </div>
-        <div class="flex-center max-sm:flex-col gap-4 mt-4">
-          <nuxt-link
-            :to="`${crmBaseUrl}/clients/company`"
-            class="flex-1 w-full"
-            aria-label="qrcode solution login"
-            @click="visible = false"
-          >
-            <button class="large w-full" aria-label="login">Profile</button>
-          </nuxt-link>
-          <nuxt-link
-            :to="`${crmBaseUrl}/authentication/logoutRedirect`"
-            class="flex-1 w-full"
-            aria-label="qrcode solution logout"
-          >
-            <button class="primary large w-full" aria-label="login">Đăng xuất</button>
-          </nuxt-link>
-        </div>
-      </a-drawer>
-    </header>
-
-    <div class="page-content px-20 max-xl:px-4 py-10 max-xl:pt-0 mt-[80px] max-xl:mt-[64px] mb-[120px]">
+    <div class="page-content max-xl:px-4 py-10 max-xl:pt-0 mt-[80px] max-xl:mt-[64px] mb-[120px]">
       <NuxtPage />
     </div>
 
-    <footer :class="{'pb-[100px]' : isPaymentPage}">
+    <footer :class="{ 'pb-[100px]': isPaymentPage }">
       <nuxt-picture loading="lazy" src="/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122" />
 
       <div class="flex max-lg:flex-wrap gap-[40px] justify-between mt-[40px]">
