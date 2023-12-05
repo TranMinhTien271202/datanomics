@@ -39,7 +39,7 @@ const theseServices = ref([
       <div class="max-sm:hidden">
         <nuxt-picture
           loading="lazy"
-          src="/images/home-banner.png"
+          src="../public/images/home-banner.png"
           :imgAttrs="{ class: 'w-full', alt: 'home-banner' }"
           class="w-full"
         />

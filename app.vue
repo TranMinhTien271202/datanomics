@@ -15,7 +15,6 @@ useHead({
 });
 
 const config = useRuntimeConfig();
-const crmBaseUrl = config.public.baseUrl.crm;
 
 watch(
   route,
@@ -27,7 +26,6 @@ watch(
   { deep: true },
 );
 const isHomePage = computed(() => route.path === "/");
-const isPaymentPage = computed(() => route.path === "/bang-gia");
 const isScrolled = ref(false);
 
 const handleScroll = () => {
@@ -54,7 +52,7 @@ onBeforeUnmount(() => {
         <nuxt-link to="/">
           <nuxt-picture
             loading="lazy"
-            :src="isScrolled ? '/images/logo-1.png' : '/images/logo.png'"
+            :src="isScrolled ? '/images/logo-1.png' : '/images/logo-white.png'"
             :img-attrs="{ alt: 'logo' }"
             width="136"
           />
@@ -130,7 +128,7 @@ onBeforeUnmount(() => {
     </div>
 
     <footer :class="{ 'pb-[100px]': isPaymentPage }">
-      <nuxt-picture loading="lazy" src="/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122" />
+      <nuxt-picture loading="lazy" src="./public/images/logo.png" :img-attrs="{ alt: 'logo' }" width="122" />
 
       <div class="flex max-lg:flex-wrap gap-[40px] justify-between mt-[40px]">
         <div id="company-info" class="max-lg:w-full">
@@ -261,13 +259,6 @@ onBeforeUnmount(() => {
           </nuxt-link>
         </div>
       </div>
-
-      <!-- telephone -->
-      <ContactPhoneNumber />
-
-      <ClientOnly>
-        <FacebookChat />
-      </ClientOnly>
     </footer>
   </div>
 </template>
