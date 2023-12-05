@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+// Import library style
+@import "ol/ol.css";
+@import "vue-advanced-cropper/dist/style.css";
+
+// Import style
+@import "./variables";
+@import "./mixins";
+@import "./antd";
+@import "./base";
+@import "./login";

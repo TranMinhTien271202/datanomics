@@ -1,0 +1,54 @@
+// Responsive mixins
+$sm: 640px;
+$md: 768px;
+$lg: 1024px;
+$xl: 1280px;
+$xxl: 1536px;
+
+@mixin Max($canvas) {
+  @if $canvas == sm {
+    @media not all and (min-width: $sm) {
+      @content;
+    }
+  } @else if $canvas == md {
+    @media not all and (min-width: $md) {
+      @content;
+    }
+  } @else if $canvas == lg {
+    @media not all and (min-width: $lg) {
+      @content;
+    }
+  } @else if $canvas == xl {
+    @media not all and (min-width: $xl) {
+      @content;
+    }
+  } @else if $canvas == xxl {
+    @media not all and (min-width: $xxl) {
+      @content;
+    }
+  }
+}
+
+@mixin Min($canvas) {
+  @if $canvas == sm {
+    @media all and (min-width: $sm) {
+      @content;
+    }
+  } @else if $canvas == md {
+    @media all and (min-width: $md) {
+      @content;
+    }
+  } @else if $canvas == lg {
+    @media all and (min-width: $lg) {
+      @content;
+    }
+  } @else if $canvas == xl {
+    @media all and (min-width: $xl) {
+      @content;
+    }
+  } @else if $canvas == xxl {
+    @media all and (min-width: $xxl) {
+      @content;
+    }
+  }
+}

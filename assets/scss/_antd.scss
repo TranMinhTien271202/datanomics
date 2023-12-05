@@ -1,0 +1,219 @@
+.ant-form-item-label > label {
+  font-size: 16px;
+  height: 56px;
+  color: #666;
+
+  @include Max(sm) {
+    font-size: 12px;
+  }
+}
+
+.ant-form label {
+  @include Max(sm) {
+    font-size: 12px;
+  }
+}
+
+.ant-input {
+  height: 56px;
+  font-size: $font-size-base;
+  border-radius: 10px;
+
+  &:hover,
+  &:focus {
+    border-color: $primary-color;
+    box-shadow: none;
+  }
+}
+
+.ant-input-number {
+  @extend .ant-input;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  width: 100%;
+
+  .ant-input-number-input-wrap {
+    height: 100%;
+
+    .ant-input-number-input {
+      height: 100%;
+    }
+  }
+}
+
+[class*="ant-col-offset-"] {
+  @media (max-width: 575px) {
+    margin: 0 !important;
+  }
+}
+
+.ant-slider-dot-active {
+  border-color: $primary-color;
+}
+
+.ant-slider-handle:focus {
+  box-shadow: none;
+}
+
+.ant-collapse-borderless.ant-collapse-borderless--qrcreate {
+  .ant-collapse-header {
+    padding-left: 0 !important;
+    padding: 0;
+
+    .ant-collapse-arrow {
+      right: 0;
+    }
+  }
+
+  .ant-collapse-content {
+    .ant-collapse-content-box {
+      padding: 0;
+    }
+  }
+}
+
+.ant-collapse-borderless.ant-collapse-borderless--custom {
+  border-radius: 24px;
+
+  & > .ant-collapse-item {
+    border-color: #e0e0e0 !important;
+
+    &:last-child {
+      @include Min(lg) {
+        border-radius: 0 0 24px 24px !important;
+      }
+    }
+
+    &-active {
+      .ant-collapse-header {
+        border-bottom: 1px solid #e0e0e0;
+      }
+    }
+
+    .ant-collapse-header {
+      font-weight: 700;
+      padding: 34px 40px 34px 0 !important;
+      margin: 0 56px;
+      transition:
+        all 0.3s,
+        visibility 0s,
+        border 0s !important;
+
+      @include Max(lg) {
+        padding: 12px 40px 12px 0 !important;
+        margin: 0;
+      }
+    }
+
+    .ant-collapse-content-box {
+      padding: 24px 56px !important;
+
+      @include Max(lg) {
+        padding: 12px 0 !important;
+      }
+    }
+  }
+
+  .ant-collapse-arrow svg {
+    fill: $primary-color;
+  }
+}
+
+.ant-motion-collapse {
+  overflow: hidden;
+  transition:
+    height 0.2s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.2s cubic-bezier(0.645, 0.045, 0.355, 1) !important;
+}
+
+.ant-select {
+  &:not(.ant-select-customize-input) {
+    .ant-select-selector {
+      border-radius: 0.75rem;
+      height: 56px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+}
+
+.select-tab-control.ant-radio-group {
+  display: flex;
+
+  > label.ant-radio-button-wrapper {
+    text-align: center;
+    flex-grow: 1;
+    border: 1px solid #d9d9d9 !important;
+    min-height: 45px;
+
+    span {
+      color: black;
+      vertical-align: middle;
+    }
+
+    &.ant-radio-button-wrapper-checked {
+      background-color: rgba($primary-color, 0.1);
+
+      &:not(.ant-radio-button-wrapper-disabled)::before {
+        display: none;
+      }
+    }
+
+    &:focus-within {
+      box-shadow: 0 0 0 3px rgba($primary-color, 0.1) !important;
+    }
+
+    &:not(:first-child) {
+      border-left: none !important;
+    }
+
+    &:first-child {
+      border-radius: 12px 0 0 12px;
+    }
+
+    &:last-child {
+      border-radius: 0 12px 12px 0;
+    }
+  }
+}
+
+.ant-input-group-wrapper.ant-input-group-wrapper--color {
+  .ant-input-group {
+    position: relative;
+
+    > .ant-input:first-child {
+      border-radius: 0.75rem;
+      border-top-right-radius: 0.75rem;
+      border-bottom-right-radius: 0.75rem;
+      padding-right: 67px;
+    }
+
+    .ant-input-group-addon {
+      z-index: 1;
+      width: 56px;
+      height: 56px;
+      position: absolute;
+      top: 0;
+      padding: 0;
+      right: 0;
+      overflow: hidden;
+      border: 1px solid transparent;
+      background-color: transparent;
+      border-radius: 0 0.75rem 0.75rem 0;
+
+      input[type="color"] {
+        width: 100%;
+        height: 100%;
+      }
+    }
+  }
+}
+
+.ant-select.ant-select--fix {
+  .ant-select-selector {
+    .ant-select-selection-item {
+      display: flex;
+    }
+  }
+}
