@@ -1,34 +1,69 @@
 <script setup>
 const theseServices = ref([
   {
-    icon: "../public/images/these-services-icon.png",
+    icon: "/images/these-services-icon.png",
     title: "Data Management",
     description:
       "This is the most technology heavy part in the framework and needs a lot of involvement from IT professionals.",
   },
   {
-    icon: "../public/images/these-services-icon1.png",
+    icon: "/images/these-services-icon1.png",
     title: "BI & Data Analytics",
     description:
       "Analytics is the most exciting part of the data-driven framework. And, the one with the most potential as well. To compete",
   },
   {
-    icon: "../public/images/these-services-icon2.png",
+    icon: "/images/these-services-icon2.png",
     title: "Data Strategy",
     description:
       "Many companies make the mistake of starting their transformations or simply making investments in data/information management programs just for the sake of transforming or because everyone is doing it. It is crucial for organizations to align their investments in these initiatives with definitive business goals.",
   },
   {
-    icon: "../public/images/these-services-icon3.png",
+    icon: "/images/these-services-icon3.png",
     title: "Data Governance",
     description:
       "Data needs to be governed so people, who consume it through reports, dashboards & analytics, etc. and take crucial business",
   },
   {
-    icon: "../public/images/these-services-icon4.png",
+    icon: "/images/these-services-icon4.png",
     title: "Customer data platform",
     description:
       "The platform aggregates customer data across all touchpoints (online and in-person) into a single platform.",
+  },
+]);
+
+const slider = ref([
+  {
+    title: "Testimonials",
+    description:
+      "Datanomics has been our technology and analytics partner for program implementation, monitoring and reporting. They understand our requirements clearly and quickly, and come up with best, cost-effective solutions. They are very easy to work with and are excellent with communicating progress. Their standout quality is their willingness to take up any challenge, within the time and cost constraints, to ensure that we get the best solutions for our pain points.",
+    name: "Mr.Tai",
+    position: "CEO Logo bank",
+    image: "/images/hero.png",
+  },
+  {
+    title: "Testimonials",
+    description:
+      "Datanomics has been our technology and analytics partner for program implementation, monitoring and reporting. They understand our requirements clearly and quickly, and come up with best, cost-effective solutions. They are very easy to work with and are excellent with communicating progress. Their standout quality is their willingness to take up any challenge, within the time and cost constraints, to ensure that we get the best solutions for our pain points.",
+    name: "Mr.Tai",
+    position: "CEO Logo bank",
+    image: "/images/hero.png",
+  },
+  {
+    title: "Testimonials",
+    description:
+      "Datanomics has been our technology and analytics partner for program implementation, monitoring and reporting. They understand our requirements clearly and quickly, and come up with best, cost-effective solutions. They are very easy to work with and are excellent with communicating progress. Their standout quality is their willingness to take up any challenge, within the time and cost constraints, to ensure that we get the best solutions for our pain points.",
+    name: "Mr.Tai",
+    position: "CEO Logo bank",
+    image: "/images/hero.png",
+  },
+  {
+    title: "Testimonials",
+    description:
+      "Datanomics has been our technology and analytics partner for program implementation, monitoring and reporting. They understand our requirements clearly and quickly, and come up with best, cost-effective solutions. They are very easy to work with and are excellent with communicating progress. Their standout quality is their willingness to take up any challenge, within the time and cost constraints, to ensure that we get the best solutions for our pain points.",
+    name: "Mr.Tai",
+    position: "CEO Logo bank",
+    image: "/images/hero.png",
   },
 ]);
 </script>
@@ -39,7 +74,7 @@ const theseServices = ref([
       <div class="max-sm:hidden">
         <nuxt-picture
           loading="lazy"
-          src="../public/images/home-banner.png"
+          src="/images/home-banner-desktop.png"
           :imgAttrs="{ class: 'w-full', alt: 'home-banner' }"
           class="w-full"
         />
@@ -47,7 +82,7 @@ const theseServices = ref([
       <div class="sm:hidden -mx-20">
         <nuxt-picture
           loading="lazy"
-          src="/images/home-banner-mobile2.png"
+          src="/images/home-banner-mobile.png"
           :imgAttrs="{ class: 'w-full', alt: 'home-banner-mobile' }"
           class="w-full"
         />
@@ -103,7 +138,7 @@ const theseServices = ref([
             </div>
           </div>
         </div>
-        <NuxtPicture src="../public/images/these-sevices-1.png" width="379" />
+        <NuxtPicture src="/images/these-sevices-1.png" width="379" />
       </div>
       <div class="flex justify-center mt-[40px]">
         <div class="w-[378px]" v-for="(sevices, index) in theseServices.slice(2, 5)" :key="index">
@@ -121,88 +156,96 @@ const theseServices = ref([
 
     <section id="our-vision" class="flex items-center">
       <nuxt-picture
-        src="../public/images/our-vision.png"
+        src="/images/our-vision.png"
         :imgAttrs="{ alt: 'our-vision' }"
         width="100%"
         class="max-sm:hidden flex-1"
       />
-      <div class="flex-1 pl-[135px]">
-        <h2>Our vision</h2>
-        <p class="max-w-[481px] mt-[8px] mb-[20px]">
-          We aspire to be the partner of choice in your transformation into a data-driven organization and enable you to
-          manage and monetize data through effective use of people, process and technology
-        </p>
-        <nuxt-link to="#">
-          <button
-            class="rounded-[12px] w-[209px] h-[56px] bg-primary text-secondary border-e-0 max-md:hidden border-none"
-            aria-label="solution-miraway"
-          >
-            See more
-          </button>
-        </nuxt-link>
+      <div class="flex-1 flex justify-center items-center">
+        <div>
+          <h2>Our vision</h2>
+          <p class="max-w-[481px] mt-[8px] mb-[20px]">
+            We aspire to be the partner of choice in your transformation into a data-driven organization and enable you
+            to manage and monetize data through effective use of people, process and technology
+          </p>
+          <nuxt-link to="#">
+            <button
+              class="rounded-[12px] w-[209px] h-[56px] bg-primary text-secondary border-e-0 max-md:hidden border-none"
+              aria-label="solution-miraway"
+            >
+              See more
+            </button>
+          </nuxt-link>
+        </div>
       </div>
     </section>
 
     <section id="data-management" class="mt-[32px] flex items-center">
-      <div class="flex-1">
-        <h2>Data management</h2>
-        <p class="max-w-[481px] mt-[8px] mb-[20px]">
-          Aim to be a leading provider of data strategy, data management, data governance & analytics solutions
-        </p>
+      <div class="flex-1 flex justify-center items-center">
+        <div>
+          <h2>Data management</h2>
+          <p class="max-w-[481px] mt-[8px] mb-[20px]">
+            Aim to be a leading provider of data strategy, data management, data governance & analytics solutions
+          </p>
+        </div>
       </div>
       <nuxt-picture
-        src="../public/images/data-management.png"
+        src="/images/data-management.png"
         :imgAttrs="{ alt: 'data-management' }"
         width="100%"
         class="max-sm:hidden flex-1"
       />
     </section>
 
-    <section id="best-professional-solutions" class="mt-[32px] 2xl:container m-auto flex items-center">
+    <section id="best-professional-solutions" class="mt-[32px] flex items-center">
       <nuxt-picture
-        src="../public/images/hands-stack-business-people.png"
+        src="/images/hands-stack-business-people.png"
         :imgAttrs="{ alt: 'data-management' }"
         width="100%"
         class="max-sm:hidden flex-1"
       />
-      <div class="flex-1 pl-[135px]">
-        <h2>Best professional solutions</h2>
-        <p class="max-w-[481px] mt-[8px] mb-[20px]">
-          Our motto "Your Trusted Partner In Everything Data" signifiles our commitment across all critical stages in
-          monetizing data
-        </p>
+      <div class="flex-1 flex justify-center items-center">
+        <div>
+          <h2>Best professional solutions</h2>
+          <p class="max-w-[481px] mt-[8px] mb-[20px]">
+            Our motto "Your Trusted Partner In Everything Data" signifiles our commitment across all critical stages in
+            monetizing data
+          </p>
 
-        <h2>Strong team & partners</h2>
-        <ul class="list-disc">
-          <li>Strong team of experts working both onsite and offsite.</li>
-          <li>Strong partners to strengthen our capabilities.</li>
-        </ul>
+          <h2>Strong team & partners</h2>
+          <ul class="list-disc">
+            <li>Strong team of experts working both onsite and offsite.</li>
+            <li>Strong partners to strengthen our capabilities.</li>
+          </ul>
+        </div>
       </div>
     </section>
 
     <section class="mt-[80px]">
-      <a-carousel dot-position="right" class="custom-carousel">
-        <div class="">
-          <div class="">
+      <a-carousel dot-position="right" autoplay :autoplay-speed="2000" class="custom-carousel">
+        <div
+          class="bg-[url('/images/bg-card-visit.jpg')] bg-no-repeat bg-cover"
+          v-for="(item, index) in slider"
+          :key="index"
+        >
+          <div class="flex items-center gap-[150px] px-[120px] py-[60px]">
             <div>
-              <h3 class="text-center text-white">Testimonials</h3>
+              <h3 class="text-center text-white">{{ item.title }}</h3>
               <div class="max-w-[276px] max-h-[276px] rounded-1/2 border-spacing-3 border-white mt-[12px]">
-                <NuxtPicture src="../public/images/hero.png" />
+                <NuxtPicture :src="item.image" :imgAttrs="{ alt: 'avatar' }" />
               </div>
             </div>
 
             <div>
-              <p class="max-w-[584px]">
-                <span>"</span>
-                Datanomics has been our technology and analytics partner for program implementation, monitoring and
-                reporting. They understand our requirements clearly and quickly, and come up with best, cost-effective
-                solutions. They are very easy to work with and are excellent with communicating progress. Their standout
-                quality is their willingness to take up any challenge, within the time and cost constraints, to ensure
-                that we get the best solutions for our pain points.
-              </p>
-              <div>
-                <h4>Mr.Tai</h4>
-                <p>CEO Logo bank</p>
+              <div class="flex gap-2">
+                <NuxtPicture src="/images/comma.svg" class="-translate-y-[10px]" :imgAttrs="{ alt: 'icon-comma' }" />
+                <p class="max-w-[584px] text-white">
+                  {{ item.description }}
+                </p>
+              </div>
+              <div class="mt-[53px] ml-[37px]">
+                <h4 class="text-white text-[20px] font-blod">{{ item.name }}</h4>
+                <p class="text-white text-[14px] font-light">{{ item.position }}</p>
               </div>
             </div>
           </div>
@@ -210,6 +253,9 @@ const theseServices = ref([
       </a-carousel>
     </section>
 
-    <Contact class="mt-[80px] 2xl:container mx-auto" />
+    <CustomerCarouselTwo class="mt-[80px]" />
+
+    <Contact class="mt-[80px]" />
   </div>
 </template>
+
