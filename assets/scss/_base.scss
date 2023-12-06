@@ -660,3 +660,8 @@ input[type="checkbox"]::before {
   font-size: 12px;
 }
 
+.service-item{
+  &:nth-child(2){
+    margin-left: 120px;
+  }
+}
