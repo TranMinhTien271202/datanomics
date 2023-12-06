@@ -33,7 +33,10 @@
           manage and monetize data through effective use of people, process and technology.
         </p>
       </div>
-      <NuxtLink to="#a" class="absolute left-1/2 bottom-[60px] -translate-x-1/2 flex flex-col gap-[8px] items-center max-sm:hidden">
+      <NuxtLink
+        to="#a"
+        class="absolute left-1/2 bottom-[60px] -translate-x-1/2 flex flex-col gap-[8px] items-center max-sm:hidden"
+      >
         <p class="text-white font-bold">Scroll Down</p>
         <nuxt-picture
           loading="lazy"
