@@ -134,20 +134,6 @@ a {
   header {
     background: transparent;
     box-shadow: none !important;
-
-    .nav-item {
-      color: white !important;
-      padding: 16px 12px;
-      border-radius: 12px;
-      -webkit-border-radius: 12px;
-      -moz-border-radius: 12px;
-      -ms-border-radius: 12px;
-      -o-border-radius: 12px;
-      &:hover {
-        background-color: #fff;
-        color: $primary-color !important;
-      }
-    }
   }
 
   .page-content {
@@ -158,11 +144,12 @@ a {
 
 .scroll {
   header {
-    background: #23262f;
+    background: $text-base-color;
   }
 }
 
 header {
+  width: 100vw;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -170,7 +157,6 @@ header {
   position: fixed;
   top: 0;
   left: 0;
-  right: 0;
   background: #f5f5f5;
   z-index: 100;
 
@@ -208,6 +194,24 @@ header {
         }
       }
     }
+
+    .nav-item {
+      color: white;
+      padding: 16px 12px;
+      border-radius: 12px;
+      -webkit-border-radius: 12px;
+      -moz-border-radius: 12px;
+      -ms-border-radius: 12px;
+      -o-border-radius: 12px;
+      &:hover {
+        background-color: white;
+        color: $primary-color;
+      }
+    }
+    .nav-item-active {
+      background-color: white;
+      color: $primary-color;
+    }
   }
 
   @include Max(xl) {
@@ -222,7 +226,7 @@ footer {
   .subtitle-2,
   .subtitle-3,
   small {
-    color: #666666;
+    color: white;
   }
 
   @include Max(md) {
@@ -655,3 +659,4 @@ input[type="checkbox"]::before {
   font-weight: 200;
   font-size: 12px;
 }
+
