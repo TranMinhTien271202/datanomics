@@ -26,6 +26,7 @@ watch(
   { deep: true },
 );
 const isHomePage = computed(() => route.path === "/");
+const isOurService = computed(() => route.path === "/OurService");
 const isScrolled = ref(false);
 
 const handleScroll = () => {
@@ -60,7 +61,9 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="nav-menu flex gap-x-[40px] subtitle-3 max-xl:hidden">
-        <nuxt-link to="#" class="nav-item">Our Service</nuxt-link>
+        <nuxt-link to="/OurService" class="nav-item" :class="isOurService ? 'nav-item-active' : ''"
+          >Our Service</nuxt-link
+        >
         <nuxt-link to="#" class="nav-item">Offerings</nuxt-link>
         <nuxt-link to="#" class="nav-item">About us</nuxt-link>
         <nuxt-link to="#" class="nav-item">Contact Us</nuxt-link>
@@ -123,7 +126,7 @@ onBeforeUnmount(() => {
       </a-drawer>
     </header>
 
-    <div class="page-content py-10 max-xl:pt-0 mt-[80px] max-xl:mt-[64px] mb-[120px]">
+    <div class="page-content py-10 max-sm:mx-4 max-xl:pt-0 mt-[80px] max-xl:mt-[64px] mb-[120px]">
       <NuxtPage />
     </div>
 
@@ -149,7 +152,7 @@ onBeforeUnmount(() => {
                 />
               </svg>
 
-              Hanoi office:  41, Phu Kieu 1, Kieu Mai, Bac Tu Liem, Ha Noi
+              Hanoi office: 41, Phu Kieu 1, Kieu Mai, Bac Tu Liem, Ha Noi
             </div>
           </div>
 
@@ -221,10 +224,18 @@ onBeforeUnmount(() => {
           <nuxt-link to="#" class="subtitle-3 text-white">Customer data platform</nuxt-link>
         </div>
       </div>
-      <div class="text-white text-[14px] mt-[92px]">
-        © Copyright – 2023 | DATANOMICS | All Rights Reserved 
-      </div>
+      <div class="text-white text-[14px] mt-[92px]">© Copyright – 2023 | DATANOMICS | All Rights Reserved</div>
     </footer>
   </div>
 </template>
 
+<script>
+export default {
+  data() {
+    return {};
+  },
+  mounted() {
+    document.querySelector("section").scrollIntoView({ behavior: "smooth" });
+  },
+};
+</script>

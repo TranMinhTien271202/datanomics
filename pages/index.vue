@@ -123,46 +123,53 @@ const slider = ref([
 
     <section id="these-services">
       <div class="flex justify-center">
-        <div class="mt-[156px]">
+        <div class="mt-[156px] max-lg:mt-[80px]">
           <div>
-            <h2 class="max-w-[584px]">These services help make your work more efficient</h2>
+            <h2 class="lg:max-w-[584px] max-lg:text-center">These services help make your work more efficient</h2>
           </div>
-          <div class="flex mt-[40px]">
-            <div class="w-[378px]" v-for="(sevices, index) in theseServices.slice(0, 2)" :key="index">
-              <NuxtPicture :src="sevices.icon" :imgAttrs="{ alt: 'these-services-icon' }" width="48" height="48" />
-              <h3 class="my-[8px] text-[20px] font-bold">{{ sevices.title }}</h3>
-              <p class="max-w-[276px] text-neutral text-[14px] text-ellipsis overflow-hidden line-clamp-3">
-                {{ sevices.description }}
-              </p>
-              <NuxtLink to="#" class="text-primary text-[14px] font-bold mt-[12px] block"> Xem thêm </NuxtLink>
+          <div class="flex justify-center mt-[40px] max-lg:flex-wrap max-lg:gap-[20px]">
+            <div class="w-[378px] max-lg:flex items-center gap-3" v-for="(sevices, index) in theseServices.slice(0, 2)" :key="index">
+              <NuxtPicture :src="sevices.icon" :imgAttrs="{ alt: 'these-services-icon' }" width="60" />
+              <div>
+                <h3 class="my-[8px] text-[20px] font-bold">{{ sevices.title }}</h3>
+                <p
+                  class="max-w-[276px] text-neutral text-[14px] text-ellipsis text-justify overflow-hidden line-clamp-3"
+                >
+                  {{ sevices.description }}
+                </p>
+                <NuxtLink to="#" class="text-primary text-[14px] font-bold mt-[12px] block"> Xem thêm </NuxtLink>
+              </div>
             </div>
           </div>
         </div>
-        <NuxtPicture src="/images/these-sevices-1.png" width="379" />
+        <NuxtPicture src="/images/these-sevices-1.png" width="379" class="max-lg:hidden" />
       </div>
-      <div class="flex justify-center mt-[40px]">
-        <div class="w-[378px]" v-for="(sevices, index) in theseServices.slice(2, 5)" :key="index">
-          <NuxtPicture :src="sevices.icon" :imgAttrs="{ alt: 'these-services-icon' }" width="48" height="48" />
-          <h3 class="my-[8px] text-[20px] font-bold">{{ sevices.title }}</h3>
-          <p class="max-w-[276px] text-neutral text-[14px] text-ellipsis overflow-hidden line-clamp-3">
-            {{ sevices.description }}
-          </p>
-          <NuxtLink to="#" class="text-primary text-[14px] font-bold mt-[12px] block"> Xem thêm </NuxtLink>
+
+      <div class="flex justify-center mt-[40px] max-lg:flex-wrap max-lg:gap-[20px]">
+        <div class="w-[378px] max-lg:flex items-center gap-3" v-for="(sevices, index) in theseServices.slice(2, 5)" :key="index">
+          <NuxtPicture :src="sevices.icon" :imgAttrs="{ alt: 'these-services-icon' }" width="60" />
+          <div>
+            <h3 class="my-[8px] text-[20px] font-bold">{{ sevices.title }}</h3>
+            <p class="max-w-[276px] text-neutral text-[14px] text-ellipsis overflow-hidden line-clamp-3">
+              {{ sevices.description }}
+            </p>
+            <NuxtLink to="#" class="text-primary text-[14px] font-bold mt-[12px] block"> Xem thêm </NuxtLink>
+          </div>
         </div>
       </div>
     </section>
 
     <CustomerCarousel class="mt-[80px]" />
 
-    <section id="our-vision" class="flex items-center">
+    <section id="our-vision" class="flex items-center max-lg:flex-col">
       <nuxt-picture
         src="/images/our-vision.png"
         :imgAttrs="{ alt: 'our-vision' }"
         width="100%"
-        class="max-sm:hidden flex-1"
+        class="flex-1"
       />
       <div class="flex-1 flex justify-center items-center">
-        <div>
+        <div class="max-lg:mt-[16px] max-lg:text-center">
           <h2>Our vision</h2>
           <p class="max-w-[481px] mt-[8px] mb-[20px]">
             We aspire to be the partner of choice in your transformation into a data-driven organization and enable you
@@ -180,8 +187,8 @@ const slider = ref([
       </div>
     </section>
 
-    <section id="data-management" class="mt-[32px] flex items-center">
-      <div class="flex-1 flex justify-center items-center">
+    <section id="data-management" class="mt-[32px] flex items-center max-lg:flex-col">
+      <div class="flex-1 flex justify-center items-center max-lg:order-1 max-lg:text-center max-lg:mt-[16px]">
         <div>
           <h2>Data management</h2>
           <p class="max-w-[481px] mt-[8px] mb-[20px]">
@@ -193,18 +200,18 @@ const slider = ref([
         src="/images/data-management.png"
         :imgAttrs="{ alt: 'data-management' }"
         width="100%"
-        class="max-sm:hidden flex-1"
+        class="flex-1"
       />
     </section>
 
-    <section id="best-professional-solutions" class="mt-[32px] flex items-center">
+    <section id="best-professional-solutions" class="mt-[32px] flex items-center max-lg:flex-col max-lg:text-center">
       <nuxt-picture
         src="/images/hands-stack-business-people.png"
         :imgAttrs="{ alt: 'data-management' }"
         width="100%"
-        class="max-sm:hidden flex-1"
+        class="flex-1"
       />
-      <div class="flex-1 flex justify-center items-center">
+      <div class="flex-1 flex justify-center items-center max-lg:mt-[16px]">
         <div>
           <h2>Best professional solutions</h2>
           <p class="max-w-[481px] mt-[8px] mb-[20px]">
@@ -213,7 +220,7 @@ const slider = ref([
           </p>
 
           <h2>Strong team & partners</h2>
-          <ul class="list-disc">
+          <ul class="list-disc text-left">
             <li>Strong team of experts working both onsite and offsite.</li>
             <li>Strong partners to strengthen our capabilities.</li>
           </ul>
@@ -222,13 +229,13 @@ const slider = ref([
     </section>
 
     <section class="mt-[80px]">
-      <a-carousel dot-position="right" autoplay :autoplay-speed="2000" class="custom-carousel">
+      <a-carousel dot-position="right" autoplay :autoplay-speed="3000" class="custom-carousel">
         <div
           class="bg-[url('/images/bg-card-visit.jpg')] bg-no-repeat bg-cover"
           v-for="(item, index) in slider"
           :key="index"
         >
-          <div class="flex items-center gap-[150px] px-[120px] py-[60px]">
+          <div class="flex items-center gap-[150px] px-[120px] py-[60px] max-lg:flex-col max-lg:gap-[16px] max-sm:px-[20px]">
             <div>
               <h3 class="text-center text-white">{{ item.title }}</h3>
               <div class="max-w-[276px] max-h-[276px] rounded-1/2 border-spacing-3 border-white mt-[12px]">
@@ -238,14 +245,19 @@ const slider = ref([
 
             <div>
               <div class="flex gap-2">
-                <NuxtPicture src="/images/comma.svg" class="-translate-y-[10px]" :imgAttrs="{ alt: 'icon-comma' }" />
-                <p class="max-w-[584px] text-white">
-                  {{ item.description }}
-                </p>
-              </div>
-              <div class="mt-[53px] ml-[37px]">
-                <h4 class="text-white text-[20px] font-blod">{{ item.name }}</h4>
-                <p class="text-white text-[14px] font-light">{{ item.position }}</p>
+                <NuxtPicture
+                  src="/images/comma.svg"
+                  class="-translate-y-[10px]"
+                  :imgAttrs="{ alt: 'icon-comma' }"
+                  width="32"
+                />
+                <div class="">
+                  <p class="max-w-[584px] text-white">
+                    {{ item.description }}
+                  </p>
+                  <h4 class="text-white text-[20px] font-blod mt-[40px]">{{ item.name }}</h4>
+                  <p class="text-white text-[14px] font-light">{{ item.position }}</p>
+                </div>
               </div>
             </div>
           </div>
