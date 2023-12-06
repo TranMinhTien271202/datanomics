@@ -120,7 +120,7 @@ onBeforeUnmount(() => {
           <nuxt-link to="#" @click="visible = false">About us</nuxt-link>
         </div>
         <div class="py-3 px-2 text-base-color rounded-[12px] hover:text-[#0066E6]">
-          <nuxt-link to="#" @click="visible = false">Contact Us</nuxt-link>
+          <nuxt-link to="/contact-us" @click="visible = false">Contact Us</nuxt-link>
         </div>
         <div class="py-3 px-2 text-base-color rounded-[12px] hover:text-[#0066E6]"></div>
       </a-drawer>
