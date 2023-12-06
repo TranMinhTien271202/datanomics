@@ -26,7 +26,8 @@ watch(
   { deep: true },
 );
 const isHomePage = computed(() => route.path === "/");
-const isOurService = computed(() => route.path === "/OurService");
+const isOurService = computed(() => route.path === "/our-service");
+const isContactUs = computed(() => route.path === "/contact-us");
 const isScrolled = ref(false);
 
 const handleScroll = () => {
@@ -61,12 +62,14 @@ onBeforeUnmount(() => {
       </div>
 
       <div class="nav-menu flex gap-x-[40px] subtitle-3 max-xl:hidden">
-        <nuxt-link to="/OurService" class="nav-item" :class="isOurService ? 'nav-item-active' : ''"
+        <nuxt-link to="/our-service" class="nav-item" :class="isOurService ? 'nav-item-active' : ''"
           >Our Service</nuxt-link
         >
         <nuxt-link to="#" class="nav-item">Offerings</nuxt-link>
-        <nuxt-link to="#" class="nav-item">About us</nuxt-link>
-        <nuxt-link to="#" class="nav-item">Contact Us</nuxt-link>
+        <nuxt-link to="#" class="nav-item">About Us</nuxt-link>
+        <nuxt-link to="/contact-us" class="nav-item" :class="isContactUs ? 'nav-item-active' : ''"
+          >Contact us</nuxt-link
+        >
       </div>
 
       <button class="small !px-2 bg-[#F0F0F0] border-none xl:hidden" @click="visible = true" aria-label="icon-3-dot">
@@ -239,3 +242,4 @@ export default {
   },
 };
 </script>
+
